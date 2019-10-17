@@ -53,6 +53,28 @@ namespace PolyDbDos
         }
     }
 
+    public class DbCommand
+    {
+        private string instruction; 
+        public DbCommand(string userInstruction)
+        {
+            //db command cannot be in valid state w/o having a connection. in constructor, pass dbconnection -- don't forget about empty / null
+            if (userInstruction == null)
+            {
+                throw new System.InvalidOperationException("DB Command cannot be null");
+            }
+            instruction = userInstruction;
+        }
+
+
+        public void Execute(string userInstruction)
+        {
+            //opening
+            Console.WriteLine("Running the following command: {0}", userInstruction);
+            //closing
+        }
+    }
+
     public class SqlConnection : DbConnection
     {
         public SqlConnection(string userConnectionString) : base(userConnectionString)
