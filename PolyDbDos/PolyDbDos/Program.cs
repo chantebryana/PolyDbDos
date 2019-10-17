@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PolyDb
+namespace PolyDbDos
 {
     public abstract class DbConnection
     {
@@ -20,15 +20,9 @@ namespace PolyDb
         }
 
         public DbConnection(string userConnectionString, int seconds)
+            : this(userConnectionString)
         {
             Timeout = TimeSpan.FromSeconds(seconds); // user-defined timeout interval
-            var validate = validateConnectionString(userConnectionString);
-            Console.WriteLine(validate);
-            //have some sort of thrown exception if vCS returns false
-            if (validate == true)
-            {
-                ConnectionString = userConnectionString;
-            }
         }
 
         private bool validateConnectionString(string stringToValidate)
